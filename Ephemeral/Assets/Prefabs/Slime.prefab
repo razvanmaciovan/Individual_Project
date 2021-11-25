@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 463410651}
   - component: {fileID: 463410652}
   - component: {fileID: 463410653}
+  - component: {fileID: 1291205005}
   m_Layer: 9
   m_Name: Slime
   m_TagString: Enemy
@@ -247,3 +248,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   target: {fileID: 0}
+--- !u!114 &1291205005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2676230098707372080}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c495086aaa3e0b4b9d63681e3f706f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHitPoints: 30
+  currentHitPoints: 1
+  level: 2
+  xpWorth: 10
+  damage: 1

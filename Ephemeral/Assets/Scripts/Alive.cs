@@ -4,15 +4,29 @@ using UnityEngine;
 
 public class Alive : MonoBehaviour
 {
-    public int hitPoints = 1;
+    public int maxHitPoints = 1;
+    public int currentHitPoints = 1;
     public int level = 1;
     public float xpWorth = 0.0f;
 
-    protected virtual void TakeDamage()
+    private void Start()
     {
-        if (hitPoints < 0)
+        maxHitPoints *= (int)Mathf.Sqrt(level);
+        currentHitPoints = maxHitPoints;
+    }
+
+    protected virtual void Update()
+    {
+        TakeDamageAndDie();
+        DealDamage();
+    }
+
+    protected virtual void TakeDamageAndDie()
+    {
+        if (currentHitPoints <= 0)
         {
-            GameObject.Destroy(this);
+            Destroy(gameObject);
+            currentHitPoints = 0;
         }
         
     }
