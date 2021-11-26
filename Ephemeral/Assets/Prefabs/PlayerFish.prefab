@@ -119,6 +119,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Particles: {fileID: 1124127222}
+  damage: 1
   delay: 0.7
 --- !u!82 &307360712
 AudioSource:
@@ -581,5 +582,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHitPoints: 30
   currentHitPoints: 1
-  level: 5
+  level: 1
   xpWorth: 0
+  xpCurrent: 0

@@ -8,11 +8,13 @@ public class Alive : MonoBehaviour
     public int currentHitPoints = 1;
     public int level = 1;
     public float xpWorth = 0.0f;
+    //public Animator animator;
 
-    private void Start()
+    protected virtual void Start()
     {
         maxHitPoints *= (int)Mathf.Sqrt(level);
         currentHitPoints = maxHitPoints;
+        //animator = GetComponent<Animator>();
     }
 
     protected virtual void Update()
@@ -27,6 +29,7 @@ public class Alive : MonoBehaviour
         {
             Destroy(gameObject);
             currentHitPoints = 0;
+            
         }
         
     }

@@ -4,20 +4,23 @@ using UnityEngine;
 
 public class Sword : MonoBehaviour
 {
-    Animator anim;
-    public GameObject Particles;
-    Animator swing;
+    [Header("Modifiables values")]
+    [SerializeField]
+    private GameObject Particles;
     public int damage = 1;
-    private AudioSource sound;
     public float delay;
-    float nextAttack = 0f;
+    
+    private Animator anim;
+    private Animator swingParticles;
+    private AudioSource sound;
+    private float nextAttack = 0f;
     private bool isHit = false;
 
     // Start is called before the first frame update
     void Start()
     {   
         anim = gameObject.GetComponent<Animator>();
-        swing = Particles.GetComponent<Animator>();
+        swingParticles = Particles.GetComponent<Animator>();
         sound = gameObject.GetComponent<AudioSource>();
         //Player player = GetComponent<Player>();
         //transform.position = player.transform.position;
@@ -35,11 +38,9 @@ public class Sword : MonoBehaviour
     }
    
 
-
+    //Attack animation
     private void Attack()
-    {
-        
-
+    {       
         if (Time.time >= nextAttack)
         {
             if (Input.GetMouseButtonDown(0))
@@ -47,23 +48,21 @@ public class Sword : MonoBehaviour
                 
                 anim.SetTrigger("Attack");
                 sound.Play();
-                swing.SetTrigger("Swing");
-                nextAttack = Time.time + delay;
-                
-
-
+                swingParticles.SetTrigger("Swing");
+                nextAttack = Time.time + delay;               
             }
-
-        }
-        
+        }      
     }
 
-    
+    //Detects collision with Enemies
+    //Deals damage according to the Player level
+    //Triggers the hit animations from enemies.
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if ((collision.gameObject.CompareTag("Enemy") == true) && (isHit == false))
         {
-            collision.gameObject.GetComponent<Alive>().currentHitPoints -= damage;
+            collision.gameObject.GetComponent<Alive>().currentHitPoints -= (int)Mathf.Sqrt(gameObject.GetComponentInParent<Player>().level)*damage;
+            collision.gameObject.GetComponent<Alive>().GetComponent<Animator>().SetTrigger("Hit");
             isHit = true;
             Debug.Log("damage");
             StartCoroutine("HitCooldown");
@@ -71,6 +70,7 @@ public class Sword : MonoBehaviour
         }
     }
     
+    //Cooldown before hitting again
     private IEnumerator HitCooldown()
     {
         yield return new WaitForSeconds(delay);

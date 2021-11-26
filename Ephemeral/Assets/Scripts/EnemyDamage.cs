@@ -7,13 +7,23 @@ public class EnemyDamage : Alive
     public int damage = 1;
     private bool isCooldown = false;
     private Collider2D col;
-    
+    public Player player;
     private void Awake()
     {
         col = GetComponent<Collider2D>();
         
     }
-   
+    protected override void TakeDamageAndDie()
+    {
+        if (currentHitPoints <= 0)
+        {
+            player.GetComponent<Player>().xpCurrent += (int)xpWorth;
+            Destroy(gameObject);
+            currentHitPoints = 0;
+            
+
+        }
+    }
 
 
     private void OnCollisionEnter2D(Collision2D collision)

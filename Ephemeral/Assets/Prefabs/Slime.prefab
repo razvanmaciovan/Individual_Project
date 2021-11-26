@@ -183,7 +183,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 2
-  radius: 0.01
+  radius: 0.16
   height: 0.01
   repathRate: 0.5
   canSearch: 1
@@ -260,8 +260,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c495086aaa3e0b4b9d63681e3f706f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHitPoints: 30
+  maxHitPoints: 1
   currentHitPoints: 1
   level: 2
   xpWorth: 10
   damage: 1
+  player: {fileID: 0}
