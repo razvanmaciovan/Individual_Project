@@ -133,10 +133,10 @@ TextureImporter:
       name: PunchBag-Sheet_0
       rect:
         serializedVersion: 2
-        x: 7
+        x: 0
         y: 0
-        width: 18
-        height: 44
+        width: 32
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -154,10 +154,10 @@ TextureImporter:
       name: PunchBag-Sheet_1
       rect:
         serializedVersion: 2
-        x: 40
+        x: 32
         y: 0
-        width: 18
-        height: 44
+        width: 32
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -175,10 +175,10 @@ TextureImporter:
       name: PunchBag-Sheet_2
       rect:
         serializedVersion: 2
-        x: 72
+        x: 64
         y: 0
-        width: 20
-        height: 44
+        width: 32
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -196,10 +196,10 @@ TextureImporter:
       name: PunchBag-Sheet_3
       rect:
         serializedVersion: 2
-        x: 104
+        x: 96
         y: 0
-        width: 23
-        height: 44
+        width: 32
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -217,10 +217,10 @@ TextureImporter:
       name: PunchBag-Sheet_4
       rect:
         serializedVersion: 2
-        x: 136
+        x: 128
         y: 0
-        width: 20
-        height: 44
+        width: 32
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
