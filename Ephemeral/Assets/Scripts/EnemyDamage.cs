@@ -7,11 +7,12 @@ public class EnemyDamage : Alive
     public int damage = 1;
     private bool isCooldown = false;
     private Collider2D col;
-    public Player player;
+    private GameObject player;
     private void Awake()
     {
         col = GetComponent<Collider2D>();
-        
+        player = GameObject.FindGameObjectWithTag("Player");
+
     }
     protected override void TakeDamageAndDie()
     {
