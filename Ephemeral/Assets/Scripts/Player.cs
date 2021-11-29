@@ -21,7 +21,27 @@ public class Player : Alive
             xpCurrent -= xpUntilNextLevel;
             level++;
             xpUntilNextLevel = (int)Mathf.Pow(2, level);
+            maxHitPoints += 5*(int)Mathf.Sqrt(level);
         }
         
     }
+
+
+    #region Save/Load system
+    public void SavePlayer()
+    {
+        DataHandler.SavePlayer(this);
+    }
+
+    public void LoadPlayer()
+    {
+        PlayerData data = DataHandler.LoadPlayer();
+        level = data.levelCurrent;
+        xpCurrent = data.xpCurrent;
+        maxHitPoints = data.healthMax;
+        currentHitPoints = data.healthCurrent;
+
+    }
+
+    #endregion
 }
