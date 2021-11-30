@@ -39,5 +39,10 @@ public class Alive : MonoBehaviour
 
     }
 
+    protected virtual void Flash()
+    {
+
+    }
+
     
 }

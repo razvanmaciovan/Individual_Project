@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     private Animator anim;
     private Vector3 scaleofobject;
     private float mousepos;
+    private bool canBeKnockedBack = true;
 
     private void Awake()
     {
@@ -49,5 +50,27 @@ public class PlayerMovement : MonoBehaviour
 
         rb.velocity = new Vector2(moveX * speed, moveY * speed);
     }
-    
+
+    public IEnumerator Knockback(float duration, float power, Transform transform)
+    {
+        if (canBeKnockedBack == true)
+        {
+            Debug.Log("knockback");
+            float timer = 0f;
+            while (duration > timer)
+            {
+                timer += Time.deltaTime;
+                Vector2 direction = (transform.transform.position - this.transform.position).normalized;
+                rb.AddForce(-direction * power);
+
+            }
+            yield return 0;
+        }
+    }
+
+    private void OnCollisionStay2D(Collision2D other)
+    {
+        if (other.collider.CompareTag("Wall")) canBeKnockedBack = false;
+        else canBeKnockedBack = true;
+    }
 }
