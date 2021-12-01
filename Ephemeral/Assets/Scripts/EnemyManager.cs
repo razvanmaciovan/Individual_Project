@@ -9,9 +9,8 @@ public class EnemyManager : Alive
     private Collider2D col;
     private GameObject player;
     private NavMeshAgent agent;
-    public float knockbackPower = 10f;
-    public float knockbackDuration = 1f;
     public float chaseDistance = 1.5f;
+    private float hitCooldown = 0.5f;
     private void Awake()
     {
         col = GetComponent<Collider2D>();
@@ -38,15 +37,17 @@ public class EnemyManager : Alive
 
     private void OnCollisionStay2D(Collision2D collision)
     {
-        Debug.Log(collision.gameObject.transform.name);
+        //Debug.Log(collision.gameObject.transform.name);
         if (collision.gameObject.tag == "Player" && isCooldown == false)
         {
             isCooldown = true;            
             //Player player = collision.gameObject.GetComponent<Player>();
             //player.currentHitPoints -= damage * (int)Mathf.Sqrt(level);
             collision.gameObject.GetComponentInParent<Player>().currentHitPoints -= damage * (int)Mathf.Sqrt(level);
+            collision.gameObject.GetComponentInParent<PlayerMovement>().flashCounter = collision.gameObject.GetComponentInParent<PlayerMovement>().flashLength;
+            collision.gameObject.GetComponentInParent<PlayerMovement>().flashActive = true;
             StartCoroutine("Cooldown");
-            StartCoroutine(collision.gameObject.GetComponent<PlayerMovement>().Knockback(knockbackDuration,knockbackPower,this.transform));
+            //StartCoroutine(collision.gameObject.GetComponent<PlayerMovement>().Knockback(knockbackDuration,knockbackPower,this.transform));
             
 
         }
@@ -79,19 +80,13 @@ public class EnemyManager : Alive
     }
     IEnumerator Cooldown()
     {
-        yield return new WaitForSeconds(0.5f);
+        player.layer = 10;
+        yield return new WaitForSeconds(hitCooldown);
         isCooldown = false;
+        player.layer = 8;
         //yield break;
     }
 
-    //IEnumerator KnockBack()
-    //{
-        //agent.enabled = false;
-        //GetComponent<Rigidbody2D>().isKinematic = true;
-        //player.GetComponent<Rigidbody2D>().AddForce(new Vector2(5,5), ForceMode2D.Impulse);
-        //yield return new WaitForSeconds(0.5f);
-        //GetComponent<Rigidbody2D>().isKinematic = false;
-        //agent.enabled = true;
-    //}
+    
    
 }

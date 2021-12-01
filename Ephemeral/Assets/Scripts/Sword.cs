@@ -15,9 +15,8 @@ public class Sword : MonoBehaviour
     private AudioSource sound;
     private float nextAttack = 0f;
     private bool isHit = false;
-    private CapsuleCollider2D swordColl;
-    [SerializeField]
-    private LayerMask enemiesInRange;
+    //private CapsuleCollider2D swordColl;
+    //private LayerMask enemiesInRange;
 
     // Start is called before the first frame update
     void Start()
@@ -25,7 +24,7 @@ public class Sword : MonoBehaviour
         anim = gameObject.GetComponent<Animator>();
         swingParticles = Particles.GetComponent<Animator>();
         sound = gameObject.GetComponent<AudioSource>();
-        swordColl = gameObject.GetComponent<CapsuleCollider2D>();
+        //swordColl = gameObject.GetComponent<CapsuleCollider2D>();
         //Player player = GetComponent<Player>();
         //transform.position = player.transform.position;
 
@@ -77,7 +76,7 @@ public class Sword : MonoBehaviour
             StartCoroutine("HitCooldown");
             
         }
-        Physics2D.BoxCast(swordColl.bounds.center, swordColl.bounds.size, 0f, Vector2.zero, .1f, enemiesInRange);
+        //Physics2D.BoxCast(swordColl.bounds.center, swordColl.bounds.size, 0f, Vector2.zero, .1f, enemiesInRange);
         //TODO deal damage to all enemies in range, not just one.
     }
     

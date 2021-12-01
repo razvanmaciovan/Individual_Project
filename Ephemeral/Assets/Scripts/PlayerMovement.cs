@@ -13,6 +13,9 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 scaleofobject;
     private float mousepos;
     private bool canBeKnockedBack = true;
+    public bool flashActive = false;
+    public float flashLength = 1f;
+    public float flashCounter = 0f;
 
     private void Awake()
     {
@@ -20,27 +23,34 @@ public class PlayerMovement : MonoBehaviour
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         scaleofobject = transform.localScale;
-        
+        flashCounter = flashLength;
+
     }
     private void Update()
     {
-        MovePlayer();
+        
         mousepos = GameObject.Find("MousePos").transform.rotation.eulerAngles.z;
         AnimatePlayer();
+        if (flashActive) OnHitFlash();
+        Debug.Log(flashCounter);
+    }
+    private void FixedUpdate()
+    {
+        MovePlayer();
     }
     void AnimatePlayer()
     {
-        if(mousepos >= 0 && mousepos<= 180) transform.localScale = new Vector3(-scaleofobject.x, scaleofobject.y, scaleofobject.z);
+        if (mousepos >= 0 && mousepos <= 180) transform.localScale = new Vector3(-scaleofobject.x, scaleofobject.y, scaleofobject.z);
 
         else transform.localScale = new Vector3(scaleofobject.x, scaleofobject.y, scaleofobject.z);
 
-        if (moveX != 0)   anim.SetBool("Walk", true);
+        if (moveX != 0) anim.SetBool("Walk", true);
 
-        else  anim.SetBool("Walk", false);
-        
+        else anim.SetBool("Walk", false);
+
         if (moveY != 0) anim.SetBool("Walk", true);
 
-   
+
     }
     void MovePlayer()
     {
@@ -48,29 +58,59 @@ public class PlayerMovement : MonoBehaviour
 
         moveY = Input.GetAxisRaw("Vertical");
 
-        rb.velocity = new Vector2(moveX * speed, moveY * speed);
+        Vector2 movemement = new Vector2(moveX * speed, moveY * speed);
+        rb.velocity = movemement;
     }
 
-    public IEnumerator Knockback(float duration, float power, Transform transform)
-    {
-        if (canBeKnockedBack == true)
-        {
-            Debug.Log("knockback");
-            float timer = 0f;
-            while (duration > timer)
-            {
-                timer += Time.deltaTime;
-                Vector2 direction = (transform.transform.position - this.transform.position).normalized;
-                rb.AddForce(-direction * power);
-
-            }
-            yield return 0;
-        }
-    }
+    
 
     private void OnCollisionStay2D(Collision2D other)
     {
         if (other.collider.CompareTag("Wall")) canBeKnockedBack = false;
         else canBeKnockedBack = true;
+        
     }
+
+
+
+    public void OnHitFlash()
+    {
+       
+       if(flashCounter > flashLength * .99f)
+        {
+            sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, 0f);
+        }
+       else if(flashCounter > flashLength * .82f)
+        {
+            sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, 1f);
+        }
+       else if(flashCounter > flashLength * .62f)
+        {
+            sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, 0f);
+        }
+       else if(flashCounter > flashLength * .49f)
+        {
+            sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, 1f);
+        }
+       else if(flashCounter > flashLength * .33f)
+        {
+            sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, 0f);
+        }
+       else if(flashCounter > flashLength * .16f)
+        {
+            sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, 1f);
+        }
+       else if(flashCounter > 0f)
+        {
+            sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, 0f);
+        }
+        else
+        {
+            flashActive = false;
+            
+            sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, 1f);
+        }
+        flashCounter -= Time.deltaTime;
+    }
+
 }

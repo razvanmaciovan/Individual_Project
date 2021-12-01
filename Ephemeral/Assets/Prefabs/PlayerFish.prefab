@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 307360712}
   - component: {fileID: 307360711}
   - component: {fileID: 307360717}
+  - component: {fileID: 3679286734284211145}
   m_Layer: 7
   m_Name: SharkSword
   m_TagString: Sword
@@ -264,6 +265,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
+--- !u!114 &3679286734284211145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 307360710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ee1dec7b5ff18e4b885d389030024f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thrust: 0
 --- !u!1 &1002862455
 GameObject:
   m_ObjectHideFlags: 0
