@@ -12,7 +12,6 @@ public class PlayerMovement : MonoBehaviour
     private Animator anim;
     private Vector3 scaleofobject;
     private float mousepos;
-    private bool canBeKnockedBack = true;
     public bool flashActive = false;
     public float flashLength = 1f;
     public float flashCounter = 0f;
@@ -32,7 +31,7 @@ public class PlayerMovement : MonoBehaviour
         mousepos = GameObject.Find("MousePos").transform.rotation.eulerAngles.z;
         AnimatePlayer();
         if (flashActive) OnHitFlash();
-        Debug.Log(flashCounter);
+        
     }
     private void FixedUpdate()
     {
@@ -61,16 +60,6 @@ public class PlayerMovement : MonoBehaviour
         Vector2 movemement = new Vector2(moveX * speed, moveY * speed);
         rb.velocity = movemement;
     }
-
-    
-
-    private void OnCollisionStay2D(Collision2D other)
-    {
-        if (other.collider.CompareTag("Wall")) canBeKnockedBack = false;
-        else canBeKnockedBack = true;
-        
-    }
-
 
 
     public void OnHitFlash()

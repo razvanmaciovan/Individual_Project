@@ -60,26 +60,25 @@ public class Sword : MonoBehaviour
     //Detects collision with Enemies
     //Deals damage according to the Player level
     //Triggers the hit animations from enemies.
-    private void OnCollisionEnter2D(Collision2D collision)
+
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        //int bounce = 0;
-       
-        if ((collision.gameObject.CompareTag("Enemy") == true) && (isHit == false))
+        if ((other.gameObject.CompareTag("Enemy") == true) && (isHit == false))
         {
-            int bounce = 2;
-            collision.gameObject.GetComponent<Alive>().currentHitPoints -= (int)Mathf.Sqrt(gameObject.GetComponentInParent<Player>().level)*damage;
-            collision.gameObject.GetComponent<Alive>().GetComponent<Animator>().SetTrigger("Hit");
-            collision.gameObject.GetComponent<Rigidbody2D>().velocity += collision.relativeVelocity * bounce;
+
+            other.gameObject.GetComponent<Alive>().currentHitPoints -= (int)Mathf.Sqrt(gameObject.GetComponentInParent<Player>().level) * damage;
+            if (other.gameObject.GetComponent<EnemyManager>())
+                other.gameObject.GetComponent<EnemyManager>().hpBar.UpdateHealthBarCurrent(other.gameObject.GetComponent<EnemyManager>().currentHitPoints);
+            other.gameObject.GetComponent<Alive>().GetComponent<Animator>().SetTrigger("Hit");
+            //collision.gameObject.GetComponent<Rigidbody2D>().velocity += collision.relativeVelocity * bounce;
 
             isHit = true;
             Debug.Log("damage");
             StartCoroutine("HitCooldown");
-            
+
         }
-        //Physics2D.BoxCast(swordColl.bounds.center, swordColl.bounds.size, 0f, Vector2.zero, .1f, enemiesInRange);
-        //TODO deal damage to all enemies in range, not just one.
     }
-    
+
     //Cooldown before hitting again
     private IEnumerator HitCooldown()
     {

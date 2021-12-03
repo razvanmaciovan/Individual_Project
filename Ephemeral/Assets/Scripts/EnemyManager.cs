@@ -11,6 +11,7 @@ public class EnemyManager : Alive
     private NavMeshAgent agent;
     public float chaseDistance = 1.5f;
     private float hitCooldown = 0.5f;
+    public HpBar hpBar;
     private void Awake()
     {
         col = GetComponent<Collider2D>();
@@ -19,6 +20,12 @@ public class EnemyManager : Alive
         agent.updateRotation = false;
         agent.updateUpAxis = false;
 
+    }
+    protected override void Start()
+    {
+        base.Start();
+        hpBar.UpdateHealthBarMax(maxHitPoints);
+        hpBar.UpdateHealthBarCurrent(maxHitPoints);
     }
     protected override void TakeDamageAndDie()
     {
@@ -38,6 +45,10 @@ public class EnemyManager : Alive
     private void OnCollisionStay2D(Collision2D collision)
     {
         //Debug.Log(collision.gameObject.transform.name);
+        
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
         if (collision.gameObject.tag == "Player" && isCooldown == false)
         {
             isCooldown = true;            
@@ -51,8 +62,8 @@ public class EnemyManager : Alive
             
 
         }
+        else player.layer = 8;
     }
-    
     protected override void Update()
     {
         ChasePlayer();

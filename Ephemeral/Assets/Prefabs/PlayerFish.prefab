@@ -252,9 +252,9 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 307360710}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
-  m_UseFullKinematicContacts: 0
+  m_UseFullKinematicContacts: 1
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
@@ -277,7 +277,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ee1dec7b5ff18e4b885d389030024f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thrust: 0
+  thrust: 2
 --- !u!1 &1002862455
 GameObject:
   m_ObjectHideFlags: 0
@@ -545,6 +545,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
+  flashActive: 0
+  flashLength: 1
+  flashCounter: 0
 --- !u!50 &144446351
 Rigidbody2D:
   serializedVersion: 4
@@ -555,11 +558,11 @@ Rigidbody2D:
   m_GameObject: {fileID: 969151795561267290}
   m_BodyType: 0
   m_Simulated: 1
-  m_UseFullKinematicContacts: 0
+  m_UseFullKinematicContacts: 1
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
@@ -594,8 +597,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cba189c50f2fe5e41908b4ac4fb0400b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  xpCurrent: 0
+  hpBar: {fileID: 0}
+  xpBar: {fileID: 0}
   maxHitPoints: 30
   currentHitPoints: 1
   level: 1
-  xpWorth: 0
-  xpCurrent: 0
