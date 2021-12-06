@@ -65,10 +65,13 @@ public class Sword : MonoBehaviour
     {
         if ((other.gameObject.CompareTag("Enemy") == true) && (isHit == false))
         {
-
+            
             other.gameObject.GetComponent<Alive>().currentHitPoints -= (int)Mathf.Sqrt(gameObject.GetComponentInParent<Player>().level) * damage;
             if (other.gameObject.GetComponent<EnemyManager>())
+            {
                 other.gameObject.GetComponent<EnemyManager>().hpBar.UpdateHealthBarCurrent(other.gameObject.GetComponent<EnemyManager>().currentHitPoints);
+                other.gameObject.GetComponentInChildren<HpBar>().Fade();
+            }
             other.gameObject.GetComponent<Alive>().GetComponent<Animator>().SetTrigger("Hit");
             //collision.gameObject.GetComponent<Rigidbody2D>().velocity += collision.relativeVelocity * bounce;
 

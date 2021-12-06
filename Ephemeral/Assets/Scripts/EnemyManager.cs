@@ -51,7 +51,8 @@ public class EnemyManager : Alive
     {
         if (collision.gameObject.tag == "Player" && isCooldown == false)
         {
-            isCooldown = true;            
+            isCooldown = true;
+            
             //Player player = collision.gameObject.GetComponent<Player>();
             //player.currentHitPoints -= damage * (int)Mathf.Sqrt(level);
             collision.gameObject.GetComponentInParent<Player>().currentHitPoints -= damage * (int)Mathf.Sqrt(level);

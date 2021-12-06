@@ -161,6 +161,7 @@ GameObject:
   - component: {fileID: 1935789046}
   - component: {fileID: 1935789047}
   - component: {fileID: 1935789048}
+  - component: {fileID: 543903776}
   m_Layer: 5
   m_Name: Hp
   m_TagString: Untagged
@@ -283,6 +284,19 @@ MonoBehaviour:
     m_NumColorKeys: 4
     m_NumAlphaKeys: 2
   fill: {fileID: 285459323}
+  duration: 0.4
+--- !u!225 &543903776
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1935789045}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1993231146
 GameObject:
   m_ObjectHideFlags: 0
@@ -562,9 +576,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c495086aaa3e0b4b9d63681e3f706f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHitPoints: 5
-  currentHitPoints: 1
-  level: 1
+  maxHitPoints: 10
+  currentHitPoints: 5
+  level: 3
   xpWorth: 1
   damage: 1
   chaseDistance: 1.5
