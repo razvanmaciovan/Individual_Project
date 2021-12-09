@@ -20,7 +20,8 @@ public class Sword : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    {   
+    {
+
         anim = gameObject.GetComponent<Animator>();
         swingParticles = Particles.GetComponent<Animator>();
         sound = gameObject.GetComponent<AudioSource>();
@@ -78,6 +79,9 @@ public class Sword : MonoBehaviour
             isHit = true;
             Debug.Log("damage");
             StartCoroutine("HitCooldown");
+
+            DamagePopup.CreateDamagePopup(other.transform.position, (int)Mathf.Sqrt(gameObject.GetComponentInParent<Player>().level) * damage);
+            CameraShake.Instance.ShakeCamera(0.7f, 0.2f);
 
         }
     }

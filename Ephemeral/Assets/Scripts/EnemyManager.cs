@@ -58,6 +58,8 @@ public class EnemyManager : Alive
             collision.gameObject.GetComponentInParent<Player>().currentHitPoints -= damage * (int)Mathf.Sqrt(level);
             collision.gameObject.GetComponentInParent<PlayerMovement>().flashCounter = collision.gameObject.GetComponentInParent<PlayerMovement>().flashLength;
             collision.gameObject.GetComponentInParent<PlayerMovement>().flashActive = true;
+            DamagePopup.CreateDamagePopup(collision.transform.position, damage * (int)Mathf.Sqrt(level),new Color(1,0,0),36);
+            CameraShake.Instance.ShakeCamera(2f,0.2f);
             StartCoroutine("Cooldown");
             //StartCoroutine(collision.gameObject.GetComponent<PlayerMovement>().Knockback(knockbackDuration,knockbackPower,this.transform));
             
