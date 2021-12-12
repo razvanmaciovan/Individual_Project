@@ -15,6 +15,7 @@ public class Level : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(GameObject.FindGameObjectWithTag("Player"))
         GetComponent<TMPro.TextMeshProUGUI>().text = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().level.ToString();
     }
 }

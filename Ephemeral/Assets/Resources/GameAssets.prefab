@@ -44,3 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pfDamagePopup: {fileID: 9091437498651414027, guid: 169426322a1635a49b0d255917f35881, type: 3}
+  player: {fileID: 969151795561267290, guid: 5291bb27df0c7b746af093bb8d2beb0a, type: 3}
+  woodSword: {fileID: 9043684589015351364, guid: 67d84f955810bab439df6631dfbe5bef, type: 3}
+  katanaSword: {fileID: 6730234294486062449, guid: bc2aec1f6eaf55d4d80c24aea36114cb, type: 3}
+  SharkSword: {fileID: 4432889978947347302, guid: 2bf0aec6601baba40ad26d3c13b232f4, type: 3}

@@ -15,4 +15,9 @@ public class GameAssets : MonoBehaviour
     }
 
     public Transform pfDamagePopup;
+    public GameObject player;
+
+    #region SwordManager
+   
+    #endregion
 }
