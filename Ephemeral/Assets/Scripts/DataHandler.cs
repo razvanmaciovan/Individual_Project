@@ -35,4 +35,15 @@ public static class DataHandler
            return null;
         }
     }
+
+    public static bool CheckSaveFileExistance()
+    {
+        if (File.Exists(Application.persistentDataPath + "/player.rtd")) return true;
+        return false;
+    }
+    public static void DeleteSaveFile()
+    {
+        if (CheckSaveFileExistance()) File.Delete(Application.persistentDataPath + "/player.rtd");
+        else Debug.LogError("File doesn't exist");
+    }
 }

@@ -13,7 +13,7 @@ public class Portal : MonoBehaviour
         {
             player.SavePlayer();
             player.LoadPlayer();
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene(2);
         }
     }
 }

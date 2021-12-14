@@ -16,7 +16,7 @@ public class Player : MonoBehaviour
         maxHitPoints *= (int)Mathf.Sqrt(level);
         currentHitPoints = maxHitPoints;
         xpUntilNextLevel = (int)Mathf.Pow(2, level);
-        Debug.Log(xpUntilNextLevel);
+        //Debug.Log(xpUntilNextLevel);
         //hpBar.UpdateHealthBarMax(maxHitPoints);
         //hpBar.UpdateHealthBarCurrent(maxHitPoints);
         //hpBar.UpdateTextBar(maxHitPoints, maxHitPoints);
@@ -60,7 +60,7 @@ public class Player : MonoBehaviour
 
     public void LoadPlayer()
     {
-        PlayerData data = DataHandler.LoadPlayer();
+        PlayerData data = DataHandler.LoadPlayer();     
         level = data.levelCurrent;
         xpCurrent = data.xpCurrent;
         maxHitPoints = data.healthMax;
@@ -68,6 +68,23 @@ public class Player : MonoBehaviour
         xpUntilNextLevel = (int)Mathf.Pow(2, level);
         UpdateHUD();
 
+    }
+
+    public void LoadPlayer(bool loadPosition)
+    {
+        if (!loadPosition) Debug.LogError("loadPosition cannot be false");
+        else
+        {
+            PlayerData data = DataHandler.LoadPlayer();
+            Vector3 oldPosition = new Vector3(data.playerTransformX, data.playerTransformY, data.playerTransformZ);
+            transform.position = oldPosition;
+            level = data.levelCurrent;
+            xpCurrent = data.xpCurrent;
+            maxHitPoints = data.healthMax;
+            currentHitPoints = data.healthCurrent;
+            xpUntilNextLevel = (int)Mathf.Pow(2, level);
+            UpdateHUD();
+        }
     }
 
     public void UpdateHUD()

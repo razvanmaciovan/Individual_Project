@@ -49,11 +49,6 @@ public class Sword : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
-                //if (GameAssets.i.player)
-                //{
-                //    if (GameAssets.i.player.GetComponent<Player>().level <= 5) 
-                //    else if (GameAssets.i.player.GetComponent<Player>().level <= 10) anim.SetTrigger("Katana");
-                //}
                 anim.SetTrigger("Attack");
                 sound.Play();
                 swingParticles.SetTrigger("Swing");

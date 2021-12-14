@@ -11945,7 +11945,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 34.5
+  m_fontSize: 34.55
   m_fontSizeBase: 68.69
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -12016,6 +12016,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2134787078}
+  - component: {fileID: 2134787079}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -12037,6 +12038,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2134787079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2134787077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22e63a4de13bc2b4ea8a226e5a230f3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  woodSword: {fileID: 686441953}
+  katanaSword: {fileID: 300644272}
+  sharkSword: {fileID: 1823431038}
 --- !u!1001 &969151795408824356
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12399,6 +12415,10 @@ PrefabInstance:
     - target: {fileID: 9043684589015351364, guid: 67d84f955810bab439df6631dfbe5bef, type: 3}
       propertyPath: m_Name
       value: WoodSword
+      objectReference: {fileID: 0}
+    - target: {fileID: 9043684589015351364, guid: 67d84f955810bab439df6631dfbe5bef, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9043684589015351367, guid: 67d84f955810bab439df6631dfbe5bef, type: 3}
       propertyPath: m_RootOrder
