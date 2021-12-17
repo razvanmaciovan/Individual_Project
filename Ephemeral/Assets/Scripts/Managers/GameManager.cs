@@ -51,4 +51,5 @@ public class GameManager : MonoBehaviour
             else swordList[i].SetActive(false);
         }
     }
+
 }

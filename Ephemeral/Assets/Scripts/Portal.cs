@@ -12,7 +12,6 @@ public class Portal : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             player.SavePlayer();
-            player.LoadPlayer();
             SceneManager.LoadScene(2);
         }
     }

@@ -13,15 +13,14 @@ public class Player : MonoBehaviour
     public int level = 1;
     private void Start()
     {
-        maxHitPoints *= (int)Mathf.Sqrt(level);
-        currentHitPoints = maxHitPoints;
-        xpUntilNextLevel = (int)Mathf.Pow(2, level);
-        //Debug.Log(xpUntilNextLevel);
-        //hpBar.UpdateHealthBarMax(maxHitPoints);
-        //hpBar.UpdateHealthBarCurrent(maxHitPoints);
-        //hpBar.UpdateTextBar(maxHitPoints, maxHitPoints);
-        //xpBar.UpdateTextBar(xpCurrent, xpUntilNextLevel);
-        //xpBar.UpdateXpBarMax(xpUntilNextLevel);
+        //DataHandler.DeleteSaveFile();
+        if (DataHandler.CheckSaveFileExistance()) LoadPlayer();
+        else
+        {
+            maxHitPoints *= (int)Mathf.Sqrt(level);
+            currentHitPoints = maxHitPoints;
+            xpUntilNextLevel = (int)Mathf.Pow(2, level);
+        }
     }
 
     private void Update()

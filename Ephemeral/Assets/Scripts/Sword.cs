@@ -25,6 +25,7 @@ public class Sword : MonoBehaviour
         anim = gameObject.GetComponent<Animator>();
         swingParticles = Particles.GetComponent<Animator>();
         sound = gameObject.GetComponent<AudioSource>();
+        SetVolume();
         //swordColl = gameObject.GetComponent<CapsuleCollider2D>();
         //Player player = GetComponent<Player>();
         //transform.position = player.transform.position;
@@ -55,6 +56,11 @@ public class Sword : MonoBehaviour
                 nextAttack = Time.time + delay;               
             }
         }      
+    }
+    
+    private void SetVolume()
+    {
+        sound.volume = PlayerPrefs.GetFloat("volume");
     }
 
     //Detects collision with Enemies
