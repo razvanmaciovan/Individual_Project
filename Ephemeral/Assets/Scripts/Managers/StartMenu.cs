@@ -91,6 +91,7 @@ public class StartMenu : MonoBehaviour
                 if (i <= 2) mainButtons[i].SetActive(true);
                 else mainButtons[i].SetActive(false);
             }
+            confirmResetBtn.SetActive(false);
         }
     }
 
@@ -100,6 +101,24 @@ public class StartMenu : MonoBehaviour
         PlayerPrefs.SetFloat("volume",audioSource.volume);
     }
 
+    public GameObject confirmResetBtn;
+    public void OnConfirmButton()
+    {
+        confirmResetBtn.SetActive(true);   
+    }
+
+    public void OnYesResetBtn()
+    {
+        DataHandler.DeleteSaveFile();
+        SceneManager.LoadScene(0);
+        confirmResetBtn.SetActive(false);
+
+    }
+
+    public void OnNoResetBtn()
+    {
+        confirmResetBtn.SetActive(false);
+    }
     #endregion
 
 

@@ -52,12 +52,20 @@ public class Sword : MonoBehaviour
             {
                 anim.SetTrigger("Attack");
                 sound.Play();
-                swingParticles.SetTrigger("Swing");
                 nextAttack = Time.time + delay;               
             }
         }      
     }
     
+    /// <summary>
+    /// Event to be called from the weapon animations
+    /// </summary>
+    private void PlayParticles()
+    {
+        //swingParticles.SetTrigger("Swing");
+        if(GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().hasParticles == true)
+        swingParticles.Play("Swoosh");
+    }
     private void SetVolume()
     {
         sound.volume = PlayerPrefs.GetFloat("volume");

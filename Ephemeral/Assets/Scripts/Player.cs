@@ -19,7 +19,7 @@ public class Player : MonoBehaviour
         {
             maxHitPoints *= (int)Mathf.Sqrt(level);
             currentHitPoints = maxHitPoints;
-            xpUntilNextLevel = (int)Mathf.Pow(2, level);
+            xpUntilNextLevel = CalculateXpUntilNextLevel(level);
         }
     }
 
@@ -31,22 +31,17 @@ public class Player : MonoBehaviour
             currentHitPoints = 0;
 
         }
-        //xpBar.UpdateXpBarCurrent(xpCurrent);
-        //xpBar.UpdateTextBar(xpCurrent, xpUntilNextLevel);
+        
         
         if (xpCurrent >= xpUntilNextLevel)  
         {
             xpCurrent -= xpUntilNextLevel;
             level++;
-            xpUntilNextLevel = (int)Mathf.Pow(2, level);
+            xpUntilNextLevel = CalculateXpUntilNextLevel(level);
             maxHitPoints += 5*(int)Mathf.Sqrt(level);
             currentHitPoints += 5 * (int)Mathf.Sqrt(level);
-            //hpBar.UpdateHealthBarMax(maxHitPoints);
-            //hpBar.UpdateTextBar(currentHitPoints, maxHitPoints);
-            //xpBar.UpdateXpBarMax(xpUntilNextLevel);
+            
         }
-        //hpBar.UpdateHealthBarCurrent(currentHitPoints);
-        //hpBar.UpdateTextBar(currentHitPoints, maxHitPoints);
         UpdateHUD();
     }
 
@@ -64,7 +59,7 @@ public class Player : MonoBehaviour
         xpCurrent = data.xpCurrent;
         maxHitPoints = data.healthMax;
         currentHitPoints = data.healthCurrent;
-        xpUntilNextLevel = (int)Mathf.Pow(2, level);
+        xpUntilNextLevel = CalculateXpUntilNextLevel(level);
         UpdateHUD();
 
     }
@@ -81,11 +76,12 @@ public class Player : MonoBehaviour
             xpCurrent = data.xpCurrent;
             maxHitPoints = data.healthMax;
             currentHitPoints = data.healthCurrent;
-            xpUntilNextLevel = (int)Mathf.Pow(2, level);
+            xpUntilNextLevel = CalculateXpUntilNextLevel(level);
             UpdateHUD();
         }
     }
 
+    #endregion
     public void UpdateHUD()
     {
         hpBar.UpdateHealthBarMax(maxHitPoints);
@@ -95,5 +91,21 @@ public class Player : MonoBehaviour
         hpBar.UpdateTextBar(currentHitPoints, maxHitPoints);
         xpBar.UpdateTextBar(xpCurrent, xpUntilNextLevel);
     }
-    #endregion
+
+    /// <summary>
+/// Calculates the required xp for level up using a ratio of 1.1
+/// </summary>
+/// <param name="level"></param>
+/// <returns>Experience until next level</returns>
+    public int CalculateXpUntilNextLevel(int level)
+    {
+        int xpUntilNextLevel = 83;
+        for(int i=2;i<=level;i++)
+        {
+            //Debug.Log("Before math: " + xpUntilNextLevel);
+            xpUntilNextLevel = (int)(83 + 1.1 * xpUntilNextLevel);
+            //Debug.Log("After math: " + xpUntilNextLevel);
+        }
+        return xpUntilNextLevel;
+    }
 }

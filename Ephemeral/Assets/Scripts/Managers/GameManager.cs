@@ -4,15 +4,24 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    #region SwordManager
+    #region GearManager
     List<GameObject> swordList;
+    List<RuntimeAnimatorController> armorList;
     private int playerLevel;
 
     [Header("SwordManager")]
     public GameObject woodSword;
-    public GameObject katanaSword;
     public GameObject sharkSword;
+    public GameObject katanaSword;
+    public GameObject skullHammer;
+    public GameObject dragonGlaive;
 
+    [Header("ArmorManager")]
+    public RuntimeAnimatorController defaultArmor;
+    public RuntimeAnimatorController sharkArmor;
+    public RuntimeAnimatorController samuraiArmor;
+    public RuntimeAnimatorController yetiArmor;
+    public RuntimeAnimatorController dragonArmor;
 
     #endregion
 
@@ -21,8 +30,18 @@ public class GameManager : MonoBehaviour
         //Adding all weapons to a list , to enable/disable them accordingly
         swordList = new List<GameObject>();
         swordList.Add(woodSword);
-        swordList.Add(katanaSword);
         swordList.Add(sharkSword);
+        swordList.Add(katanaSword);
+        swordList.Add(skullHammer);
+        swordList.Add(dragonGlaive);
+        //Adding all armor animator controllers to a list
+        armorList = new List<RuntimeAnimatorController>();
+        armorList.Add(defaultArmor);
+        armorList.Add(sharkArmor);
+        armorList.Add(samuraiArmor);
+        armorList.Add(yetiArmor);
+        armorList.Add(dragonArmor);
+
 
     }
 
@@ -31,16 +50,45 @@ public class GameManager : MonoBehaviour
         if (GameObject.FindGameObjectWithTag("Player"))
         {
             playerLevel = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().level;
-            ChangeWeapons();
+            ChangeGear();
         }
     }
 
-
-    private void ChangeWeapons()
+    public bool hasParticles = false;
+    private void ChangeGear()
     {
-        if (playerLevel <= 5) EnableWeapon(swordList[0]);
-        else if (playerLevel <= 10) EnableWeapon(swordList[1]);
-        else EnableWeapon(swordList[swordList.Count - 1]);
+        if (playerLevel < 5)
+        {
+            EnableWeapon(swordList[0]);
+            EnableArmor(armorList[0]);
+            hasParticles = false;
+        }
+        else if (playerLevel < 10)
+        {
+            EnableWeapon(swordList[1]);
+            EnableArmor(armorList[1]);
+            hasParticles = true;
+        }
+        else if(playerLevel < 15)
+        {
+            EnableWeapon(swordList[2]);
+            EnableArmor(armorList[2]);
+            hasParticles = true;
+
+        }
+        else if(playerLevel < 20)
+        {
+            EnableWeapon(swordList[3]);
+            EnableArmor(armorList[3]);
+            hasParticles = true;
+        }
+        else
+        {
+            EnableWeapon(swordList[swordList.Count - 1]);
+            EnableArmor(armorList[armorList.Count - 1]);
+            hasParticles = false;
+        }
+
 
     }
     private void EnableWeapon(GameObject currentSword)
@@ -49,6 +97,20 @@ public class GameManager : MonoBehaviour
         {
             if (currentSword == swordList[i]) currentSword.SetActive(true);
             else swordList[i].SetActive(false);
+        }
+    }
+
+    private void EnableArmor(RuntimeAnimatorController currentArmor)
+    {
+        for (int i = 0; i < armorList.Count; i++)
+        {
+            if (currentArmor == armorList[i])
+            {
+                if (GameObject.FindGameObjectWithTag("Player"))
+                {
+                    GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().runtimeAnimatorController = currentArmor;
+                }
+            }
         }
     }
 
