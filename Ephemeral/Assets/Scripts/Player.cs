@@ -1,18 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class Player : MonoBehaviour
 {
     private int xpUntilNextLevel;
     public int xpCurrent = 0;
-    public HpBar hpBar;
-    public XpBar xpBar;
+    [HideInInspector]public HpBar hpBar ;
+    [HideInInspector] public XpBar xpBar;
     public int maxHitPoints = 1;
     public int currentHitPoints = 1;
     public int level = 1;
+    [HideInInspector] public static bool JustLeveledUp = false;
+    private void Awake()
+    {
+        
+    }
     private void Start()
     {
+
         //DataHandler.DeleteSaveFile();
         if (DataHandler.CheckSaveFileExistance()) LoadPlayer();
         else
@@ -21,6 +27,8 @@ public class Player : MonoBehaviour
             currentHitPoints = maxHitPoints;
             xpUntilNextLevel = CalculateXpUntilNextLevel(level);
         }
+        DontDestroyOnLoad(this);
+
     }
 
     private void Update()
@@ -40,12 +48,24 @@ public class Player : MonoBehaviour
             xpUntilNextLevel = CalculateXpUntilNextLevel(level);
             maxHitPoints += 5*(int)Mathf.Sqrt(level);
             currentHitPoints += 5 * (int)Mathf.Sqrt(level);
+            JustLeveledUp = true;
             
         }
         UpdateHUD();
     }
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
 
-
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        transform.position = Vector3.zero;
+        hpBar = GameObject.FindGameObjectWithTag("HUD").GetComponentInChildren<HpBar>();
+        xpBar = GameObject.FindGameObjectWithTag("HUD").GetComponentInChildren<XpBar>();
+        Debug.Log("OnSceneLoaded: " + scene.name,this);
+        Debug.Log(mode,this);
+    }
     #region Save/Load system
     public void SavePlayer()
     {

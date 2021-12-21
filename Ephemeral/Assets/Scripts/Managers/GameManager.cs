@@ -9,6 +9,9 @@ public class GameManager : MonoBehaviour
     List<RuntimeAnimatorController> armorList;
     private int playerLevel;
 
+    [Header("HUDManager")]
+    public GameObject HUD;
+
     [Header("SwordManager")]
     public GameObject woodSword;
     public GameObject sharkSword;
@@ -24,7 +27,15 @@ public class GameManager : MonoBehaviour
     public RuntimeAnimatorController dragonArmor;
 
     #endregion
-
+    private void Awake()
+    {
+        DontDestroyOnLoad(this);
+        HUD.GetComponent<Canvas>().worldCamera = Camera.main;
+        DontDestroyOnLoad(HUD);
+        GameObject.FindGameObjectWithTag("VirtualCamera").GetComponent<Cinemachine.CinemachineVirtualCamera>().Follow 
+            = GameObject.FindGameObjectWithTag("Player").transform;
+        
+    }
     private void Start()
     {
         //Adding all weapons to a list , to enable/disable them accordingly
@@ -41,52 +52,59 @@ public class GameManager : MonoBehaviour
         armorList.Add(samuraiArmor);
         armorList.Add(yetiArmor);
         armorList.Add(dragonArmor);
-
-
+        ChangeGear();
     }
 
     private void Update()
     {
-        if (GameObject.FindGameObjectWithTag("Player"))
+        if (Player.JustLeveledUp)
         {
-            playerLevel = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().level;
-            ChangeGear();
+            if (GameObject.FindGameObjectWithTag("Player"))
+            {
+                playerLevel = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().level;
+                ChangeGear();
+            }
+            Player.JustLeveledUp = false;
         }
     }
 
     public bool hasParticles = false;
     private void ChangeGear()
     {
-        if (playerLevel < 5)
+        if (GameObject.FindGameObjectWithTag("Player"))
         {
-            EnableWeapon(swordList[0]);
-            EnableArmor(armorList[0]);
-            hasParticles = false;
-        }
-        else if (playerLevel < 10)
-        {
-            EnableWeapon(swordList[1]);
-            EnableArmor(armorList[1]);
-            hasParticles = true;
-        }
-        else if(playerLevel < 15)
-        {
-            EnableWeapon(swordList[2]);
-            EnableArmor(armorList[2]);
-            hasParticles = true;
+            playerLevel = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().level;
+            if (playerLevel < 5)
+            {
+                EnableWeapon(swordList[0]);
+                EnableArmor(armorList[0]);
+                hasParticles = false;
+            }
+            else if (playerLevel < 10)
+            {
+                EnableWeapon(swordList[1]);
+                EnableArmor(armorList[1]);
+                hasParticles = true;
+            }
+            else if (playerLevel < 15)
+            {
+                EnableWeapon(swordList[2]);
+                EnableArmor(armorList[2]);
+                hasParticles = true;
 
-        }
-        else if(playerLevel < 20)
-        {
-            EnableWeapon(swordList[3]);
-            EnableArmor(armorList[3]);
-            hasParticles = true;
-        }
-        else
-        {
-            EnableWeapon(swordList[swordList.Count - 1]);
-            EnableArmor(armorList[armorList.Count - 1]);
-            hasParticles = false;
+            }
+            else if (playerLevel < 20)
+            {
+                EnableWeapon(swordList[3]);
+                EnableArmor(armorList[3]);
+                hasParticles = true;
+            }
+            else
+            {
+                EnableWeapon(swordList[swordList.Count - 1]);
+                EnableArmor(armorList[armorList.Count - 1]);
+                hasParticles = false;
+            }
         }
 
 

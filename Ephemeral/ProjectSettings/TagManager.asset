@@ -9,6 +9,8 @@ TagManager:
   - Sword
   - Portal
   - GameManager
+  - HUD
+  - VirtualCamera
   layers:
   - Default
   - TransparentFX
