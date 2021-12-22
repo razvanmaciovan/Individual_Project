@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,8 +10,7 @@ public class GameManager : MonoBehaviour
     List<RuntimeAnimatorController> armorList;
     private int playerLevel;
 
-    [Header("HUDManager")]
-    public GameObject HUD;
+
 
     [Header("SwordManager")]
     public GameObject woodSword;
@@ -30,8 +30,7 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         DontDestroyOnLoad(this);
-        HUD.GetComponent<Canvas>().worldCamera = Camera.main;
-        DontDestroyOnLoad(HUD);
+       
         GameObject.FindGameObjectWithTag("VirtualCamera").GetComponent<Cinemachine.CinemachineVirtualCamera>().Follow 
             = GameObject.FindGameObjectWithTag("Player").transform;
         
@@ -132,4 +131,5 @@ public class GameManager : MonoBehaviour
         }
     }
 
+  
 }

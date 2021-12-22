@@ -6,12 +6,16 @@ using UnityEngine.SceneManagement;
 
 public class CameraManager : MonoBehaviour
 {
-    public GameObject virtualCamera;
-    public GameObject mainCamera;
+    [HideInInspector]public GameObject virtualCamera;
+    [HideInInspector]public GameObject mainCamera;
 
     private void Awake()
     {
+        virtualCamera = GameObject.FindGameObjectWithTag("VirtualCamera");
+        mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
         DontDestroyOnLoad(this);
+        DontDestroyOnLoad(virtualCamera);
+        DontDestroyOnLoad(mainCamera);
     }
     private void OnEnable()
     {

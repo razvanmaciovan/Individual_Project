@@ -14,7 +14,8 @@ public class Player : MonoBehaviour
     [HideInInspector] public static bool JustLeveledUp = false;
     private void Awake()
     {
-        
+        hpBar = GameObject.FindGameObjectWithTag("HUD").GetComponent<HpBar>();
+        xpBar = GameObject.FindGameObjectWithTag("HUD").GetComponentInChildren<XpBar>();
     }
     private void Start()
     {
@@ -128,4 +129,6 @@ public class Player : MonoBehaviour
         }
         return xpUntilNextLevel;
     }
+
+    [ContextMenu("Add1000Xp")] public void Add1000Xp() { xpCurrent += 1000; }
 }

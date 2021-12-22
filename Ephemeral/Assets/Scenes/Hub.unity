@@ -203,6 +203,49 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &309893322
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 309893323}
+  - component: {fileID: 309893324}
+  m_Layer: 0
+  m_Name: SceneManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &309893323
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 309893322}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.4107413, y: 0.70252204, z: -0.44780412}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &309893324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 309893322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7278feccaffc3e42bdee20c9cfb1f36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &352504247
 GameObject:
   m_ObjectHideFlags: 0
@@ -6790,6 +6833,50 @@ MonoBehaviour:
   m_Area: 0
   m_IgnoreFromBuild: 0
   m_AffectedAgents: ffffffff
+--- !u!1 &1052818992
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1052818994}
+  - component: {fileID: 1052818993}
+  m_Layer: 0
+  m_Name: GUIManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1052818993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1052818992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4493551985ad8642b920fc023f570da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HUD: {fileID: 0}
+--- !u!4 &1052818994
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1052818992}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.394789, y: -0.48492298, z: -0.21041821}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1146137286
 GameObject:
   m_ObjectHideFlags: 0
@@ -6943,11 +7030,6 @@ Transform:
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5770665844609093464, guid: 5291bb27df0c7b746af093bb8d2beb0a, type: 3}
   m_PrefabInstance: {fileID: 969151795408824356}
-  m_PrefabAsset: {fileID: 0}
---- !u!20 &1582738959 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 2425798963736635588, guid: a6d0949a6c3140140b19346e372c2cb1, type: 3}
-  m_PrefabInstance: {fileID: 2425798963383619771}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1702780869
 GameObject:
@@ -10122,7 +10204,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22e63a4de13bc2b4ea8a226e5a230f3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HUD: {fileID: 6315620816952327207, guid: 121051d44c97b004998de4cbf1d5b819, type: 3}
   woodSword: {fileID: 686441953}
   sharkSword: {fileID: 1823431038}
   katanaSword: {fileID: 300644272}
@@ -10471,10 +10552,6 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6315620816952327202, guid: 121051d44c97b004998de4cbf1d5b819, type: 3}
-      propertyPath: m_Camera
-      value: 
-      objectReference: {fileID: 1582738959}
     - target: {fileID: 6315620816952327203, guid: 121051d44c97b004998de4cbf1d5b819, type: 3}
       propertyPath: m_Pivot.x
       value: 0
