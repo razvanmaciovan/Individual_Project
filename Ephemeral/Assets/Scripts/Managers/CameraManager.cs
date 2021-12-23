@@ -9,13 +9,22 @@ public class CameraManager : MonoBehaviour
     [HideInInspector]public GameObject virtualCamera;
     [HideInInspector]public GameObject mainCamera;
 
+    private static CameraManager _instance;
     private void Awake()
     {
-        virtualCamera = GameObject.FindGameObjectWithTag("VirtualCamera");
-        mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
-        DontDestroyOnLoad(this);
-        DontDestroyOnLoad(virtualCamera);
-        DontDestroyOnLoad(mainCamera);
+        if (_instance != null) Destroy(gameObject);
+        else
+        {
+            _instance = this;
+            virtualCamera = GameObject.FindGameObjectWithTag("VirtualCamera");
+            mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
+            DontDestroyOnLoad(this);
+            DontDestroyOnLoad(virtualCamera);
+            DontDestroyOnLoad(mainCamera);
+            virtualCamera.GetComponent<Cinemachine.CinemachineVirtualCamera>().Follow
+                = GameObject.FindGameObjectWithTag("Player").transform;
+        }
+
     }
     private void OnEnable()
     {

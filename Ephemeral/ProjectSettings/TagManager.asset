@@ -11,6 +11,7 @@ TagManager:
   - GameManager
   - HUD
   - VirtualCamera
+  - MainMenu
   layers:
   - Default
   - TransparentFX

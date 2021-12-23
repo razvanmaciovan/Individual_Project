@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class Player : MonoBehaviour
 {
-    private int xpUntilNextLevel;
+    [HideInInspector]public int xpUntilNextLevel;
     public int xpCurrent = 0;
     [HideInInspector]public HpBar hpBar ;
     [HideInInspector] public XpBar xpBar;

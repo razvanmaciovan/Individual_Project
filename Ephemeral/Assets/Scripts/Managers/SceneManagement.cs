@@ -6,9 +6,15 @@ using UnityEngine.SceneManagement;
 public class SceneManagement : MonoBehaviour
 {
     [HideInInspector]public string LastScene;
+    private static SceneManagement _instance;
     private void Awake()
     {
-        DontDestroyOnLoad(this);
+        if (_instance != null) Destroy(gameObject);
+        else {
+            _instance = this;
+            DontDestroyOnLoad(this); 
+        }
+
     }
 
     private void OnEnable()
@@ -20,5 +26,6 @@ public class SceneManagement : MonoBehaviour
     {
         Debug.Log(scene.name, this);
         LastScene = scene.name;
+
     }
 }

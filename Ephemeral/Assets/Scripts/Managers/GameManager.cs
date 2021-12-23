@@ -27,14 +27,21 @@ public class GameManager : MonoBehaviour
     public RuntimeAnimatorController dragonArmor;
 
     #endregion
+
+    private static GameManager _instance;
     private void Awake()
     {
-        DontDestroyOnLoad(this);
-       
-        GameObject.FindGameObjectWithTag("VirtualCamera").GetComponent<Cinemachine.CinemachineVirtualCamera>().Follow 
-            = GameObject.FindGameObjectWithTag("Player").transform;
-        
+        if (_instance != null) Destroy(gameObject);
+        else
+        {
+            _instance = this;
+            DontDestroyOnLoad(this);
+
+            
+        }
+
     }
+
     private void Start()
     {
         //Adding all weapons to a list , to enable/disable them accordingly

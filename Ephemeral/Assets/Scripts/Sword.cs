@@ -75,12 +75,14 @@ public class Sword : MonoBehaviour
     //Deals damage according to the Player level
     //Triggers the hit animations from enemies.
 
+
     private void OnTriggerEnter2D(Collider2D other)
     {
+        
         if ((other.gameObject.CompareTag("Enemy") == true) && (isHit == false))
         {
             Debug.Log("Hit Dummy");
-            other.gameObject.GetComponent<Alive>().currentHitPoints -= (int)Mathf.Sqrt(gameObject.GetComponentInParent<Player>().level) * damage;
+            other.gameObject.GetComponent<Alive>().currentHitPoints -= (int)(Mathf.Sqrt(gameObject.GetComponentInParent<Player>().level) * damage);
             if (other.gameObject.GetComponent<EnemyManager>())
             {
                 other.gameObject.GetComponent<EnemyManager>().hpBar.UpdateHealthBarCurrent(other.gameObject.GetComponent<EnemyManager>().currentHitPoints);
@@ -93,7 +95,7 @@ public class Sword : MonoBehaviour
             Debug.Log("damage");
             StartCoroutine("HitCooldown");
 
-            DamagePopup.CreateDamagePopup(other.transform.position, (int)Mathf.Sqrt(gameObject.GetComponentInParent<Player>().level) * damage);
+            DamagePopup.CreateDamagePopup(other.transform.position, (int)(Mathf.Sqrt(gameObject.GetComponentInParent<Player>().level) * damage));
             CameraShake.Instance.ShakeCamera(0.7f, 0.2f);
 
         }
